@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "home-video-tube": "apps/home-video-tube",
+    "home-video-tube-e2e": "apps/home-video-tube-e2e"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/home-video-tube/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/home-video-tube",
+        "index": "apps/home-video-tube/src/index.html",
+        "baseHref": "/",
+        "main": "apps/home-video-tube/src/main.tsx",
+        "polyfills": "apps/home-video-tube/src/polyfills.ts",
+        "tsConfig": "apps/home-video-tube/tsconfig.app.json",
+        "assets": [
+          "apps/home-video-tube/src/favicon.ico",
+          "apps/home-video-tube/src/assets",
+          "apps/home-video-tube/src/netlify.toml"
+        ],
+        "styles": [
+          "apps/home-video-tube/src/styles.scss"
+        ],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/home-video-tube/src/environments/environment.ts",
+              "with": "apps/home-video-tube/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "home-video-tube:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "home-video-tube:build:development"
+        },
+        "production": {
+          "buildTarget": "home-video-tube:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/home-video-tube/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/home-video-tube"
+      ],
+      "options": {
+        "jestConfig": "apps/home-video-tube/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
