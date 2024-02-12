@@ -14,7 +14,7 @@ export default function NavBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Home Videos
+            Papa's Tape Deck
           </Typography>
           <Box sx={{ display: 'block' }}>
             {routes.map((item, i) => {
