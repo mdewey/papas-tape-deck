@@ -1,7 +1,7 @@
-import SearchMovies from "../components/SearchMovies";
+import SearchTapes from "../components/SearchTapes";
 function Search() {
   return (
-    <SearchMovies />
+    <SearchTapes />
   );
 
 }

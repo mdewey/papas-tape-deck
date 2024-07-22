@@ -8,6 +8,9 @@ import { useAppDispatch } from "../hooks/redux";
 import Search from "./pages/Search";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material";
+import {
+  useQuery,
+} from '@tanstack/react-query';
 
 const theme = createTheme({
   palette: {
@@ -22,13 +25,24 @@ const theme = createTheme({
 
 export function App() {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    // axios.get(`${process.env["NX_METADATA_API_URL"]}api/v2/Tapes`)
-    //   .then(resp => {
-    //     dispatch({ type: "SET_TAPE_LIST", payload: resp.data });
-    //   });
 
-  }, [dispatch]);
+
+  const { data } = useQuery({
+    queryKey: ['all-tapes'],
+    queryFn: async () => {
+      const url = `${process.env["NX_METADATA_API_URL"]}api/v2/Tapes`;
+      const response = await axios.get(url);
+      return response.data;
+    }
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log("effecting!", { data });
+      dispatch({ type: "SET_TAPE_LIST", payload: data });
+    }
+  }, [data, dispatch]);
+
   return (
     <ThemeProvider theme={theme}>
       <NavBar />

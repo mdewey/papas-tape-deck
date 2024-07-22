@@ -1,4 +1,4 @@
-import { Movie } from '../../store';
+import { Tape } from '../../store';
 import DisplayTags from './DisplayTags';
 
 import Card from '@mui/material/Card';
@@ -7,9 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
-export default function MovieListItem(movie: Movie) {
+export default function TapeListItem(tape: Tape) {
   const imageUrl =
-    `${process.env["NX_METADATA_API_URL"]}api/v2/Movies/${movie.id}/image`;
+    `${process.env["NX_METADATA_API_URL"]}api/v2/Movies/${tape.id}/image`;
   return (
     <Card sx={{
       width: {
@@ -22,17 +22,17 @@ export default function MovieListItem(movie: Movie) {
     }} className="movie-card">
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={tape.title}
         height="140"
         image={imageUrl}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+          <Link to={`/movie/${tape.id}`}>{tape.title}</Link>
         </Typography>
         <Typography variant="body2" color="text.secondary" component={"div"}>
-          <h3>{movie.length.split('.')[0]}</h3>
-          <DisplayTags tags={movie.tags} />
+          <h3>{tape.length.split('.')[0]}</h3>
+          <DisplayTags tags={tape.tags} />
         </Typography>
       </CardContent>
     </ Card>

@@ -22,7 +22,7 @@ const Video = () => {
   };
 
   const movieMetaData = useAppSelector(state =>
-    state.allMovies.find(m => m.id === id));
+    state.allTapes.find(m => m.id === id));
   useEffect(() => {
     // call API to get movie stream URL
     axios
@@ -60,7 +60,7 @@ const Video = () => {
         <h1>{movieMetaData.title} <a target="_blank"
           href={videoUrl} rel="noreferrer"><LaunchIcon /></a></h1>
         <ul>
-          {movieMetaData.videoTimeStamps.map((timeStamp, i) => (
+          {movieMetaData.audioTimeStamps.map((timeStamp, i) => (
             <li key={i} className="moment">
               <span className="time-stamp"
                 onClick={() => handleTimeStampClick(timeStamp.timeStamp)}>

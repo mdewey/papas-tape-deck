@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 
-export interface VideoTimeStamp {
+export interface TimeStamp {
   description: string;
   timeStamp: string;
 }
 
-export interface Movie {
+export interface Tape {
   videoUrl: string | undefined;
   id: string;
   title: string;
@@ -15,17 +15,17 @@ export interface Movie {
   version: number;
   length: string;
   tags: string[];
-  videoTimeStamps: VideoTimeStamp[];
+  audioTimeStamps: TimeStamp[];
   imageUrl: string;
 }
 
 export interface AppState {
-  allMovies: Movie[],
+  allTapes: Tape[],
   searchTerm: string,
 }
 
 const initialState: AppState = {
-  allMovies: [],
+  allTapes: [],
   searchTerm: '',
 };
 
@@ -35,8 +35,9 @@ interface AppReducer {
 
 const reducers: AppReducer = {
   "default": (state: AppState) => { return { ...state }; },
-  'SET_MOVIES': (state: AppState, action: any) => {
-    return { ...state, allMovies: action.payload };
+  'SET_TAPE_LIST': (state: AppState, action: any) => {
+    console.log('SET_TAPE_LIST', { action });
+    return { ...state, allTapes: action.payload };
   },
   "SEARCH_TERM_SET": (state: AppState, action: any) => {
     return { ...state, searchTerm: action.payload.searchTerm };

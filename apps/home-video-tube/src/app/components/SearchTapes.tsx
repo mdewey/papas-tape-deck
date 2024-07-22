@@ -2,28 +2,28 @@ import { Search } from '@mui/icons-material';
 import { Box, TextField } from '@mui/material';
 import { useMemo, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import MovieListItem from './MovieListItem';
+import TapeListItem from './TapeListItem';
 
-function SearchMovies() {
+function SearchTapes() {
   const searchTermFromStore = localStorage.getItem('searchTerm');
   const [searchTerm, setSearchTerm] =
     useState<string>(searchTermFromStore || '');
   const dispatch = useAppDispatch();
-  const movies = useAppSelector(state => state.allMovies);
-  const filteredMovies = useMemo(() => {
+  const tapes = useAppSelector(state => state.allTapes);
+  const filteredTapes = useMemo(() => {
     if (!searchTerm) {
-      return [...movies]
+      return [...tapes]
         .sort((a, b) => a.title.localeCompare(b.title));
     }
-    return movies
-      .filter(movie => {
-        return movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          movie.tags.some(t =>
+    return tapes
+      .filter(tape => {
+        return tape.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          tape.tags?.some(t =>
             t.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          movie.videoTimeStamps.some(s =>
+          tape.audioTimeStamps?.some(s =>
             s.description.toLowerCase().includes(searchTerm.toLowerCase()));
       }).sort((a, b) => a.title.localeCompare(b.title));
-  }, [movies, searchTerm]);
+  }, [tapes, searchTerm]);
 
   useEffect(() => {
     // update redux store with search term
@@ -51,8 +51,8 @@ function SearchMovies() {
 
 
       <div className='library-list'>
-        {filteredMovies.map((movie, i) => {
-          return <MovieListItem key={i} {...movie} />;
+        {filteredTapes.map((tape, i) => {
+          return <TapeListItem key={i} {...tape} />;
         }
         )}
       </div>
@@ -60,4 +60,4 @@ function SearchMovies() {
   );
 }
 
-export default SearchMovies;
+export default SearchTapes;

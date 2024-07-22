@@ -1,13 +1,13 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks/redux';
-import MovieListItem from './MovieListItem';
+import TapeListItem from './TapeListItem';
 
 function Library() {
-  const movies = useAppSelector(state => state.allMovies);
+  const movies = useAppSelector(state => state.allTapes);
   return (
     <ul className='library-list'>
       {movies.map(movie => (
-        <MovieListItem key={movie.id} {...movie} />
+        <TapeListItem key={movie.id} {...movie} />
       ))}
     </ul>
   );
