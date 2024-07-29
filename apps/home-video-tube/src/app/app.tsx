@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import About from './pages/About';
-import Video from "./pages/Video";
+import Tape from "./pages/Tape";
 import axios from "axios";
 import { useEffect } from "react";
 import { useAppDispatch } from "../hooks/redux";
@@ -49,7 +49,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<Search />} />
         <Route path="/library" element={<Home />} />
-        <Route path="/tape/:id" element={<Video />} />
+        <Route path="/tape/:id" element={<Tape />} />
         <Route path="about" element={<About />} />
       </Routes>
     </ThemeProvider>

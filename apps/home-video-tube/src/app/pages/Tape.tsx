@@ -5,9 +5,13 @@ import { useAppSelector } from "../../hooks/redux";
 import DisplayTags from "../components/DisplayTags";
 import LaunchIcon from '@mui/icons-material/Launch';
 import Paper from '@mui/material/Paper';
+
+import { useGlobalAudioPlayer } from 'react-use-audio-player';
+
+
 const Video = () => {
   const { id } = useParams();
-  const [videoUrl, setVideoUrl] = useState();
+  const [audioUrl, setAudioUrl] = useState();
   const videoElement = useRef<HTMLVideoElement>(null);
 
   const handleTimeStampClick = (timeStamp: string) => {
@@ -21,34 +25,26 @@ const Video = () => {
     }
   };
 
-  const movieMetaData = useAppSelector(state =>
+  const tapeMetaData = useAppSelector(state =>
     state.allTapes.find(m => m.id === id));
   useEffect(() => {
-    // call API to get movie stream URL
+    // // call API to get movie stream URL
     axios
-      .get(`${process.env["NX_METADATA_API_URL"]}api/v2/Movies/${id}/video`)
+      .get(`${process.env["NX_METADATA_API_URL"]}api/v2/Tapes/${id}/audio`)
       .then(resp => {
-        setVideoUrl(resp.data.videoUrl);
+        console.log({ resp });
+        setAudioUrl(resp.data.audioUrl);
       });
 
   }, [id]);
 
-  if (!movieMetaData) {
+  if (!tapeMetaData) {
     return <div>Loading...</div>;
   }
   console.log({ videoElement });
   return (
     <div className='video-page'>
-      <section className='video-container'>
-        {videoUrl ?
-          <section className="video">
-            <video controls ref={videoElement}>
-              <source src={videoUrl} type="video/mp4" />
-            </video>
-          </section>
-          :
-          <>loading video url</>}
-      </section>
+
       <Paper className="video-details"
         sx={{
           margin: '1rem',
@@ -57,10 +53,18 @@ const Video = () => {
         }}
         elevation={5}
       >
-        <h1>{movieMetaData.title} <a target="_blank"
-          href={videoUrl} rel="noreferrer"><LaunchIcon /></a></h1>
+        <h1>{tapeMetaData.title} <a target="_blank"
+          href={audioUrl} rel="noreferrer"><LaunchIcon /></a></h1>
+        <section className='video-container'>
+          {audioUrl ?
+            <section className="video">
+              <audio controls src={audioUrl}></audio>
+            </section>
+            :
+            <>loading video url</>}
+        </section>
         <ul>
-          {movieMetaData.audioTimeStamps.map((timeStamp, i) => (
+          {tapeMetaData.audioTimeStamps?.map((timeStamp, i) => (
             <li key={i} className="moment">
               <span className="time-stamp"
                 onClick={() => handleTimeStampClick(timeStamp.timeStamp)}>
@@ -69,10 +73,10 @@ const Video = () => {
             </li>
           ))}
         </ul>
-        <DisplayTags tags={movieMetaData.tags} />
+        <DisplayTags tags={tapeMetaData.tags} />
 
       </Paper>
-    </div>
+    </div >
   );
 };
 

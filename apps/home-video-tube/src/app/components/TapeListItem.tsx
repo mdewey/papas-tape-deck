@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 export default function TapeListItem(tape: Tape) {
-  const imageUrl =
-    `${process.env["NX_METADATA_API_URL"]}api/v2/Movies/${tape.id}/image`;
+  const imageUrl = "https://loremflickr.com/320/240";
+  // `${process.env["NX_METADATA_API_URL"]}api/v2/Tapes/${tape.id}/image`;
   return (
     <Card sx={{
       width: {
@@ -28,7 +28,7 @@ export default function TapeListItem(tape: Tape) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          <Link to={`/movie/${tape.id}`}>{tape.title}</Link>
+          <Link to={`/tape/${tape.id}`}>{tape.title}</Link>
         </Typography>
         <Typography variant="body2" color="text.secondary" component={"div"}>
           <h3>{tape.length.split('.')[0]}</h3>
