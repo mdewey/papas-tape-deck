@@ -7,6 +7,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import Paper from '@mui/material/Paper';
 
 import { useGlobalAudioPlayer } from 'react-use-audio-player';
+import AddDisplayTags from '../components/AddDisplayTags';
 
 
 const Video = () => {
@@ -27,6 +28,7 @@ const Video = () => {
 
   const tapeMetaData = useAppSelector(state =>
     state.allTapes.find(m => m.id === id));
+  console.log({ tapeMetaData });
   useEffect(() => {
     // // call API to get movie stream URL
     axios
@@ -41,7 +43,6 @@ const Video = () => {
   if (!tapeMetaData) {
     return <div>Loading...</div>;
   }
-  console.log({ videoElement });
   return (
     <div className='video-page'>
 
@@ -74,7 +75,7 @@ const Video = () => {
           ))}
         </ul>
         <DisplayTags tags={tapeMetaData.tags} />
-
+        <AddDisplayTags id={tapeMetaData.id} />
       </Paper>
     </div >
   );

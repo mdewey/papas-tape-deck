@@ -1,3 +1,4 @@
+import { AllOutSharp } from '@mui/icons-material';
 import { configureStore } from '@reduxjs/toolkit';
 
 
@@ -41,7 +42,11 @@ const reducers: AppReducer = {
   },
   "SEARCH_TERM_SET": (state: AppState, action: any) => {
     return { ...state, searchTerm: action.payload.searchTerm };
-  }
+  },
+  'ADD_TAPE_TAG_LIST': (state: AppState, action: any) => {
+    const { id, tags } = action.payload;
+    return { ...state, allTapes: [...state.allTapes.map(f => f)] };
+  },
 };
 
 const appReducer = (state: AppState = initialState, action: any): AppState => {

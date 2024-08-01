@@ -1,8 +1,10 @@
 
 function DisplayTags(props: { tags: string[] }) {
+
   if (!props.tags || props.tags.length === 0) {
     return null;
   }
+
   return (
     <ul className="tag-list">
       {props.tags.map((tag, i) => (
