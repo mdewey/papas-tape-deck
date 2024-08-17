@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import DisplayTags from './DisplayTags';
 
 
+
 interface AddDisplayTagsProps {
   // Define your props here
   id: string;
@@ -48,7 +49,7 @@ const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id, tags }) => {
   return (
     <div className='add-tag-container'>
       <DisplayTags tags={tagList} />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="add-tag-form">
         <TextField
           id="filled-basic"
           label="Add a new tag"

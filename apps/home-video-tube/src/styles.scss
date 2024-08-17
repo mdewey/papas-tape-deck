@@ -43,7 +43,7 @@
     .video-container {
       max-width: 100%;
 
-      video {
+      audio {
         max-width: 100%;
       }
     }
@@ -82,5 +82,16 @@
   width: 100%;
   *{
     margin: 0.5rem;
+  }
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+}
+
+.add-tag-form {
+  display: flex;
+  /* on a small screen, display flex column */  
+  @media (max-width: 1200px) {
+    flex-direction: column;
   }
 }

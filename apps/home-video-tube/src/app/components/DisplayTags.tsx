@@ -1,3 +1,5 @@
+import Chip from '@mui/material/Chip';
+
 
 function DisplayTags(props: { tags: string[] }) {
 
@@ -9,8 +11,7 @@ function DisplayTags(props: { tags: string[] }) {
     <ul className="tag-list">
       {props.tags.map((tag, i) => (
         <li key={tag}>
-          {/* <Chip label={tag} variant="outlined" /> */}
-          {tag}{i < props.tags.length - 1 ? ', ' : ''}
+          <Chip label={tag} variant="outlined" />
         </li>
       ))}
     </ul>
