@@ -4,17 +4,20 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
+import DisplayTags from './DisplayTags';
 
 
 interface AddDisplayTagsProps {
   // Define your props here
   id: string;
+  tags: string[];
 }
 
-const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id }) => {
+const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id, tags }) => {
   const dispatch = useAppDispatch();
   // Component logic goes here
   const [newTag, setNewTag] = useState<string>('');
+  const [tagList, setTagList] = useState<string[]>(tags);
 
   const mutation = useMutation(
     {
@@ -26,6 +29,7 @@ const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id }) => {
       },
       onSuccess: () => {
         console.log('tag added');
+        setTagList([...tagList, newTag]);
         dispatch({
           type: 'ADD_TAPE_TAG_LIST',
           payload: { id, tags: [newTag] }
@@ -44,6 +48,7 @@ const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id }) => {
 
   return (
     <div className='add-tag-container'>
+      <DisplayTags tags={tagList} />
       <form onSubmit={onSubmit}>
         <TextField
           id="filled-basic"

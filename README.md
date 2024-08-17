@@ -1,8 +1,10 @@
 
 # DeweyHomeVideo
 
-## TODO
+## Between now and done enough
 
-- [ ] env varibles for API loading
-- [ ] fitler for videos by title/tag/timestamp description
-- [ ] style
+- [ ] Picture from url
+- [ ] update redux toolkit, something is not right
+- [ ] Add Timestamp
+- [ ] Error handling for timestamp and tags
+- [ ] at least some styling

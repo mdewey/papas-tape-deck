@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 export default function TapeListItem(tape: Tape) {
-  const imageUrl = "https://loremflickr.com/320/240";
-  // `${process.env["NX_METADATA_API_URL"]}api/v2/Tapes/${tape.id}/image`;
+  const imageUrl =
+    `${process.env["NX_METADATA_API_URL"]}api/v2/Tapes/${tape.id}/image`;
   return (
     <Card sx={{
       width: {

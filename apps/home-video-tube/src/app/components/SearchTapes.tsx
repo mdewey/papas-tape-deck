@@ -41,7 +41,7 @@ function SearchTapes() {
         <Search sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
         <TextField
           id="outlined-basic"
-          label="Search for a memory"
+          label="Search for a tape"
           variant="outlined"
           onChange={e => setSearchTerm(e.target.value)}
           sx={{ width: '75%' }}

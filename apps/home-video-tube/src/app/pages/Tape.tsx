@@ -74,8 +74,7 @@ const Video = () => {
             </li>
           ))}
         </ul>
-        <DisplayTags tags={tapeMetaData.tags} />
-        <AddDisplayTags id={tapeMetaData.id} />
+        <AddDisplayTags id={tapeMetaData.id} tags={tapeMetaData.tags} />
       </Paper>
     </div >
   );
