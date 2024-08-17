@@ -37,7 +37,6 @@ interface AppReducer {
 const reducers: AppReducer = {
   "default": (state: AppState) => { return { ...state }; },
   'SET_TAPE_LIST': (state: AppState, action: any) => {
-    console.log('SET_TAPE_LIST', { action });
     return { ...state, allTapes: action.payload };
   },
   "SEARCH_TERM_SET": (state: AppState, action: any) => {
@@ -50,7 +49,6 @@ const reducers: AppReducer = {
 };
 
 const appReducer = (state: AppState = initialState, action: any): AppState => {
-  console.log('appReducer', { action });
   if (reducers[action.type]) {
     return reducers[action.type](state, action);
   } else {

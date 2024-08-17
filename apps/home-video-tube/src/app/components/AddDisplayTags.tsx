@@ -28,8 +28,8 @@ const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id, tags }) => {
             { tag: newTag });
       },
       onSuccess: () => {
-        console.log('tag added');
         setTagList([...tagList, newTag]);
+        setNewTag('');
         dispatch({
           type: 'ADD_TAPE_TAG_LIST',
           payload: { id, tags: [newTag] }
@@ -38,7 +38,6 @@ const AddDisplayTags: React.FC<AddDisplayTagsProps> = ({ id, tags }) => {
     });
 
   const onSubmit = (e: { preventDefault: () => void; }) => {
-    console.log('submitting');
     e.preventDefault();
     if (!newTag) {
       return;

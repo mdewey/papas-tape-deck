@@ -28,13 +28,11 @@ const Video = () => {
 
   const tapeMetaData = useAppSelector(state =>
     state.allTapes.find(m => m.id === id));
-  console.log({ tapeMetaData });
   useEffect(() => {
     // // call API to get movie stream URL
     axios
       .get(`${process.env["NX_METADATA_API_URL"]}api/v2/Tapes/${id}/audio`)
       .then(resp => {
-        console.log({ resp });
         setAudioUrl(resp.data.audioUrl);
       });
 

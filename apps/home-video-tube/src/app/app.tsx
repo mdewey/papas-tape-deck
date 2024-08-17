@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from './pages/Home';
 import About from './pages/About';
 import Tape from "./pages/Tape";
@@ -25,9 +25,9 @@ const theme = createTheme({
 
 export function App() {
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
-
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['all-tapes'],
     queryFn: async () => {
       const url = `${process.env["NX_METADATA_API_URL"]}api/v2/Tapes`;
@@ -35,10 +35,12 @@ export function App() {
       return response.data;
     }
   });
+  useEffect(() => {
+    refetch();
+  }, [location, refetch]);
 
   useEffect(() => {
     if (data) {
-      console.log("effecting!", { data });
       dispatch({ type: "SET_TAPE_LIST", payload: data });
     }
   }, [data, dispatch]);
