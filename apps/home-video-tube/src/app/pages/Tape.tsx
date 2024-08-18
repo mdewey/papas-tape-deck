@@ -71,6 +71,21 @@ const Video = () => {
         </section>
         <AddDisplayTags id={tapeMetaData.id} tags={tapeMetaData.tags} />
       </Paper>
+      <Paper className="tape-image"
+        sx={{
+          margin: '1rem',
+          marginTop: '0',
+          padding: '2rem',
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        }}
+        elevation={5}
+      >
+      </Paper>
     </div >
   );
 };
