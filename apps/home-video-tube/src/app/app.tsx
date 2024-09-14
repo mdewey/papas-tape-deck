@@ -27,7 +27,7 @@ export function App() {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ['all-tapes'],
     queryFn: async () => {
       const url = `${process.env["NX_METADATA_API_URL"]}api/v2/Tapes`;
@@ -48,12 +48,14 @@ export function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Search />} />
-        <Route path="/library" element={<Home />} />
-        <Route path="/tape/:id" element={<Tape />} />
-        <Route path="about" element={<About />} />
-      </Routes>
+      {isLoading && <div>opening up the tape drawer...</div>}
+      {!isLoading &&
+        <Routes>
+          <Route path="/" element={<Search />} />
+          <Route path="/library" element={<Home />} />
+          <Route path="/tape/:id" element={<Tape />} />
+          <Route path="about" element={<About />} />
+        </Routes>}
     </ThemeProvider>
   );
 }
