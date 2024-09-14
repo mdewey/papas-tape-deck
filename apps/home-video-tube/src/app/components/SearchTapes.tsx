@@ -48,13 +48,21 @@ function SearchTapes() {
           value={searchTerm}
         />
       </Box>
-
-
       <div className='library-list'>
+        {filteredTapes.length === 0 &&
+          <div className='no-tapes'>
+            No tapes found. Try searching for something else.
+          </div>
+        }
         {filteredTapes.map((tape, i) => {
           return <TapeListItem key={i} {...tape} />;
         }
         )}
+      </div>
+      <div>
+        <div className="footer">
+          loaded a total of {tapes.length} tapes
+        </div>
       </div>
     </div>
   );
