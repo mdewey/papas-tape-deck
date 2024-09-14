@@ -101,5 +101,19 @@
 .tape-image{
   min-height: 20rem;
   margin-top: 0rem;
-  
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(65, 64, 64);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.search-page{
+  min-height: 90vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }

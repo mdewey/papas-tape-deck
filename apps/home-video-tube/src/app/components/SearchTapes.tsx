@@ -59,11 +59,9 @@ function SearchTapes() {
         }
         )}
       </div>
-      <div>
-        <div className="footer">
-          loaded a total of {tapes.length} tapes
-        </div>
-      </div>
+      <footer>
+        loaded a total of {tapes.length} tapes
+      </footer>
     </div>
   );
 }
