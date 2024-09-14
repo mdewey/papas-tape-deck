@@ -60,7 +60,7 @@ function SearchTapes() {
         )}
       </div>
       <footer>
-        loaded a total of {tapes.length} tapes
+        loaded {tapes.length} tapes
       </footer>
     </div>
   );
