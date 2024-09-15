@@ -48,7 +48,7 @@ export function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
-      {isLoading && <div>opening up the tape drawer...</div>}
+      {isLoading && <div className="loader">opening up the tape drawer...</div>}
       {!isLoading &&
         <Routes>
           <Route path="/" element={<Search />} />

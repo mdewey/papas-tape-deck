@@ -19,7 +19,7 @@ export default function TapeListItem(tape: Tape) {
         lg: '48%',
         xl: '31%'
       }
-    }} className="movie-card">
+    }} className="tape-card slide-in">
       <CardMedia
         component="img"
         alt={tape.title}
